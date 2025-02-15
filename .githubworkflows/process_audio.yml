@@ -1,0 +1,16 @@
+name: Process Audio
+on:
+  push:
+    paths:
+      - 'audio_chunks/**.wav'
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: sudo apt install ffmpeg -y
+      - name: Transcribe audio
+        run: python transcribe.py
